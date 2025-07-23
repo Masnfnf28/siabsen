@@ -87,7 +87,8 @@ class AbsensiController extends Controller
             'tanggal' => $request->input('tanggal'),
         ];
 
-        Absensi::create($data);
+        $datas = Absensi::findOrFail($id);
+        $datas->Absensi->update($data);
 
         return back()->with('success', 'Data Berhasil Ditambahkan');
     }
