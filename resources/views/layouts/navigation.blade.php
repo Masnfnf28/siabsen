@@ -40,6 +40,10 @@
                                 <x-dropdown-link :href="route('mapel.index')">
                                     {{ __('Data Mapel') }}
                                 </x-dropdown-link>
+
+                                 <x-dropdown-link :href="route('kelas.index')">
+                                    {{ __('Data Kelas') }}
+                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     </li>
