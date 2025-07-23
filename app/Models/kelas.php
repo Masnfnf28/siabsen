@@ -16,4 +16,9 @@ class kelas extends Model
     {
         return $this->hasMany(DataSiswa::class, 'id_kelas');
     }
+
+    public function absensi()
+    {
+        return $this->hasMany(Absensi::class, 'id_kelas','id');
+    }
 }

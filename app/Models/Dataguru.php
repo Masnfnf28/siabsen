@@ -18,4 +18,8 @@ class Dataguru extends Model
     ];
 
     protected $table = 'dataguru';
+
+    public function absensi(){
+        return $this->hasMany(Absensi::class,'id');
+    }
 }

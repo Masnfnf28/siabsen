@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\DataguruController;
 use App\Http\Controllers\DataSiswaController;
 use App\Http\Controllers\KelasController;
@@ -15,6 +16,7 @@ Route::resource('dataguru', DataguruController::class)->middleware('auth');
 Route::resource('mapel', MapelController::class)->middleware('auth');
 Route::resource('kelas', KelasController::class)->middleware('auth');
 Route::resource('datasiswa', DataSiswaController::class)->middleware('auth');
+Route::resource('absensi', AbsensiController::class)->middleware('auth');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
