@@ -38,23 +38,19 @@
 
                             <x-slot name="content">
                                 <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Konsumen') }}
+                                    {{ __('Data Kelas') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Produk') }}
+                                    {{ __('Data Siswa') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Supplier') }}
+                                    {{ __('Data Guru') }}
                                 </x-dropdown-link>
 
                                 <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Konsinyasi') }}
-                                </x-dropdown-link>
-
-                                <x-dropdown-link :href="route('dashboard')">
-                                    {{ __('Konsinyasi Produk') }}
+                                    {{ __('Data Mata Pelajaran') }}
                                 </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
