@@ -5,6 +5,21 @@
         </h2>
     </x-slot>
 
+    {{-- SweetAlert Feedback --}}
+    @if (session('message'))
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                Swal.fire({
+                    icon: '{{ session('alert') ?? 'info' }}',
+                    title: '{{ session('message') }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            });
+        </script>
+    @endif
+
+
     <div class="py-10">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="flex items-start gap-5">
@@ -64,10 +79,8 @@
                                         <td class="px-5 py-3 flex justify-center gap-2">
                                             <button type="button"
                                                 class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
-                                                onclick="editSourceModal(this)"
-                                                data-modal-target="sourceModal"
-                                                data-id="{{ $item->id }}"
-                                                data-nama="{{ $item->nama }}">
+                                                onclick="editSourceModal(this)" data-modal-target="sourceModal"
+                                                data-id="{{ $item->id }}" data-nama="{{ $item->nama }}">
                                                 <i class="fi fi-sr-file-edit"></i>
                                             </button>
                                             <button type="button"
@@ -109,13 +122,12 @@
                     <div class="flex flex-col p-4 space-y-6">
                         <div>
                             <label for="nis" class="block mb-2 text-sm font-medium text-gray-900">No</label>
-                            <input type="text" id="nis" name="nis"
-                                class="form-input w-full" readonly />
+                            <input type="text" id="nis" name="nis" class="form-input w-full" readonly />
                         </div>
                         <div>
-                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900">Nama Mapel</label>
-                            <input type="text" id="nama" name="nama"
-                                class="form-input w-full" required />
+                            <label for="nama" class="block mb-2 text-sm font-medium text-gray-900">Nama
+                                Mapel</label>
+                            <input type="text" id="nama" name="nama" class="form-input w-full" required />
                         </div>
                     </div>
                     <div class="flex items-center justify-end p-4 border-t border-gray-200 space-x-2">
@@ -134,6 +146,8 @@
     </div>
 </x-app-layout>
 
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     const editSourceModal = (button) => {
         const id = button.dataset.id;
@@ -143,7 +157,6 @@
 
         document.getElementById('title_source').innerText = `UPDATE MAPEL: ${nama}`;
         document.getElementById('nama').value = nama;
-        document.getElementById('nis').value = id;
 
         const url = "{{ route('mapel.update', ':id') }}".replace(':id', id);
         form.setAttribute('action', url);
@@ -165,19 +178,20 @@
         modal.classList.add('hidden');
     }
 
-    const mapelDelete = async (id, nama) => {
-        if (confirm(`Apakah anda yakin untuk menghapus Mapel "${nama}"?`)) {
-            try {
-                await axios.post(`/mapel/${id}`, {
-                    _method: 'DELETE',
-                    _token: '{{ csrf_token() }}'
-                });
-                location.reload();
-            } catch (error) {
-                alert('Terjadi kesalahan saat menghapus data.');
-                console.error(error);
+    function mapelDelete(id, nama) {
+        Swal.fire({
+            title: 'Apakah kamu yakin?',
+            text: "Data akan dihapus permanen!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#6c757d',
+            confirmButtonText: 'Ya, hapus!',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('form-hapus-' + id).submit();
             }
-        }
+        });
     }
 </script>
-
