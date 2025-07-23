@@ -43,7 +43,7 @@ class DataguruController extends Controller
 
         Dataguru::create($data);
 
-        return back()->with('message_delete', 'Data Konsumen Sudah dihapus');
+        return back()->with('message_delete', 'Data Guru Sudah Di Tambahkan');
     }
 
     /**
@@ -78,7 +78,7 @@ class DataguruController extends Controller
 
         $datas = Dataguru::findOrFail($id);
         $datas->update($data);
-        return back()->with('message_update', 'Data Album Sudah dihapus');
+        return back()->with('message_update', 'Data Guru dihapus');
     }
 
     /**

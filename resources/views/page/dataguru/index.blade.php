@@ -217,6 +217,44 @@
         </div>
     </div>
 </x-app-layout>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if ($errors->has('nip'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'NIP Duplikat!',
+            text: '{{ $errors->first('nip') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
+@if (session('message_insert'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Berhasil!',
+            text: '{{ session('message_insert') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
+@if (session('message_update'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Diperbarui!',
+            text: '{{ session('message_update') }}',
+            showConfirmButton: false,
+            timer: 2000
+        });
+    </script>
+@endif
+
 <script>
     const editSourceModal = (button) => {
         const formModal = document.getElementById('formSourceModal');

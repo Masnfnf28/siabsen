@@ -45,7 +45,7 @@
                                     {{ __('Data Siswa') }}
                                 </x-dropdown-link>
 
-                                <x-dropdown-link :href="route('dashboard')">
+                                <x-dropdown-link :href="route('dataguru.index')">
                                     {{ __('Data Guru') }}
                                 </x-dropdown-link>
 
@@ -55,6 +55,18 @@
                             </x-slot>
                         </x-dropdown>
                     </li>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Absensi') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ms-6 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Laporan') }}
+                    </x-nav-link>
                 </div>
             </div>
 
