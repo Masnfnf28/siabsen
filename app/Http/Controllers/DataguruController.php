@@ -13,7 +13,7 @@ class DataguruController extends Controller
     public function index()
     {
         try {
-            $dataguru = Dataguru::paginate(3); // Harus menggunakan paginate, bukan all()
+            $dataguru = Dataguru::paginate(5); // Harus menggunakan paginate, bukan all()
             return view('page.dataguru.index', compact('dataguru'));
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

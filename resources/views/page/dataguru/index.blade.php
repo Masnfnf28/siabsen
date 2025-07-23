@@ -8,25 +8,25 @@
     <div class="py-10">
         <div class="max-w-10xl mx-auto sm:px-6 lg:px-8">
             <div class="gap-5 items-start flex">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-1/2 p-4">
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg w-1/3 p-4">
                     <div class="p-4 bg-gray-100 mb-2 rounded-xl font-bold">
                         FORM INPUT DATA GURU
                     </div>
                     <div>
-                        <form class="max-w-sm mx-auto" method="POST" action="{{ route('dataguru.store') }}">
+                        <form class="max-w-sm mx-5" method="POST" action="{{ route('dataguru.store') }}">
                             @csrf
                             <div class="mb-5">
                                 <label for="nip"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP
                                 </label>
-                                <input type="integer" name="nip"
+                                <input type="integer" name="nip" placeholder="Masukkan NIP"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
                             </div>
                             <div class="mb-5">
                                 <label for="nama"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Guru
                                 </label>
-                                <input type="text" name="nama"
+                                <input type="text" name="nama" placeholder="Masukkan Nama Guru"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
                             </div>
                             <div class="mb-5">
@@ -36,20 +36,20 @@
                                 <select class="js-example-placeholder-single js-states form-control w-full m-6"
                                     name="jenis_kelamin" data-placeholder="Pilih Jenis Kelamin" required>
                                     <option value="">Pilih...</option>
-                                    <option value="Laki - Laki">Laki - Laki</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
                                     <option value="Perempuan">Perempuan</option>
                                 </select>
                             </div>
                             <div class="mb-5">
                                 <label for="alamat"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat
                                 </label>
-                                <input type="text" name="alamat"
+                                <input type="text" name="alamat" placeholder="Masukkan Alamat"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
                             </div>
                             <div class="mb-5">
                                 <label for="tgl_lahir"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">NIP
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tanggal Lahir
                                 </label>
                                 <input type="date" name="tgl_lahir"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " />
@@ -76,19 +76,19 @@
                                         <th scope="col" class="px-6 py-3">
                                             NIP
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3  bg-gray-100">
                                             NAMA GURU
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             JENIS KELAMIN
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-gray-100">
                                             ALAMAT
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             TANGGAL LAHIR
                                         </th>
-                                        <th scope="col" class="px-6 py-3">
+                                        <th scope="col" class="px-6 py-3 bg-gray-100">
                                             ACTION
                                         </th>
                                     </tr>
@@ -110,16 +110,16 @@
                                             <td class="px-5 py-3 bg-gray-100">
                                                 {{ $item->nama }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td class="px-5 py-3 ">
                                                 {{ $item->jenis_kelamin }}
                                             </td>
                                             <td class="px-5 py-3 bg-gray-100">
                                                 {{ $item->alamat }}
                                             </td>
-                                            <td class="px-5 py-3 bg-gray-100">
+                                            <td class="px-5 py-3">
                                                 {{ $item->tgl_lahir }}
                                             </td>
-                                            <td class="px-5 py-3">
+                                            <td class="px-5 py-3 bg-gray-100">
                                                 <button type="button"
                                                     class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
                                                     onclick="editSourceModal(this)" data-modal-target="sourceModal"
@@ -132,7 +132,7 @@
                                                 </button>
                                                 <button
                                                     class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
-                                                    onclick="return dataguruDelete('{{ $item->id }}','{{ $item->nip }}')">
+                                                    onclick="return dataguruDelete('{{ $item->id }}','{{ $item->nama }}')">
                                                     <i class="fi fi-sr-delete-document"></i>
                                                 </button>
                                             </td>
@@ -230,7 +230,7 @@
         let url = "{{ route('dataguru.update', ':id') }}".replace(':id', id);
 
         let status = document.getElementById(modalTarget);
-        document.getElementById('title_source').innerText = `UPDATE DATA GURU ${nama}`;
+        document.getElementById('title_source').innerText = `Update Data Guru ${nama}`;
 
         document.getElementById('nip').value = nip;
         document.getElementById('nama').value = nama;
