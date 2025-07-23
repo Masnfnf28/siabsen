@@ -64,10 +64,10 @@ class KelasController extends Controller
     public function destroy(string $id)
     {
         try {
-            $kelas = kelas::findOrFail($id);
+            $kelas = Kelas::findOrFail($id);
             $kelas->delete();
 
-            return redirect()->route('Kelas.index')->with([
+            return redirect()->route('kelas.index')->with([
                 'alert' => 'success',
                 'message' => 'Data Kelas berhasil dihapus!',
             ]);
