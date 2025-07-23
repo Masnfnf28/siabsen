@@ -32,6 +32,17 @@
                                     required />
                             </div>
                             <div class="mb-5">
+                                <label for="id_kelas"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas</label>
+                                <select class="js-example-placeholder-single js-states form-control w-full"
+                                    name="id_kelas" id="base-input" placeholder="Pilih Kelas" required>
+                                    <option value="" disabled selected>Pilih Kelas...</option>
+                                    @foreach ($kelas as $k)
+                                        <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-5">
                                 <label for="jenis_kelamin"
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Jenis
                                     Kelamin</label>
@@ -47,7 +58,8 @@
                                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Alamat
                                 </label>
                                 <input type="text" name="alamat"
-                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" " required />
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" "
+                                    required />
                             </div>
                             <div class="mb-5">
                                 <label for="tgl_lahir"
@@ -83,6 +95,9 @@
                                             NAMA SISWA
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            KELAS
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             JENIS KELAMIN
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -114,6 +129,9 @@
                                                 {{ $item->nama }}
                                             </td>
                                             <td class="px-5 py-3 bg-gray-100">
+                                                {{ $item->kelas->nama }}
+                                            </td>
+                                            <td class="px-5 py-3 bg-gray-100">
                                                 {{ $item->jenis_kelamin }}
                                             </td>
                                             <td class="px-5 py-3 bg-gray-100">
@@ -127,7 +145,7 @@
                                                     class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
                                                     onclick="editSourceModal(this)" data-modal-target="sourceModal"
                                                     data-id="{{ $item->id }}" data-nis="{{ $item->nis }}"
-                                                    data-nama="{{ $item->nama }}"
+                                                    data-nama="{{ $item->nama }}" data-id_kelas="{{ $item->id_kelas }}"
                                                     data-jenis_kelamin="{{ $item->jenis_kelamin }}"
                                                     data-alamat="{{ $item->alamat }}"
                                                     data-tgl_lahir="{{ $item->tgl_lahir }}">
@@ -184,6 +202,18 @@
                             <input type="string" id="nama" name="nama"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="Masukan Nama Siswa">
+                        </div>
+                        <div class="">
+                            <label for="id_kelas_edit"
+                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Kelas
+                            </label>
+                            <select class="js-example-placeholder-single js-states form-control w-full"
+                                name="id_kelas_edit" id="id_kelas" placeholder="Pilih Kelas">
+                                <option value="" disabled selected>Pilih Kelas...</option>
+                                @foreach ($kelas as $k)
+                                    <option value="{{ $k->id }}">{{ $k->nama }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="">
                             <label for="jenis_kelamin"
@@ -278,6 +308,7 @@
         const id = button.dataset.id;
         const nis = button.dataset.nis;
         const nama = button.dataset.nama;
+        const id_kelas = button.dataset.id_kelas;
         const jenis_kelamin = button.dataset.jenis_kelamin;
         const alamat = button.dataset.alamat;
         const tgl_lahir = button.dataset.tgl_lahir;
@@ -293,6 +324,10 @@
 
         $('#jenis_kelamin').val(jenis_kelamin).trigger('change');
         document.getElementById('jenis_kelamin').value = jenis_kelamin;
+
+        let event = new Event('change');
+        document.querySelector('[name="id_kelas_edit"]').value = id_kelas;
+        document.querySelector('[name="id_kelas_edit"]').dispatchEvent(event);
 
         document.getElementById('formSourceButton').innerText = 'Simpan';
         document.getElementById('formSourceModal').setAttribute('action', url);

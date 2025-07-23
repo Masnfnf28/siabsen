@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DataSiswa;
+use App\Models\kelas;
 use Illuminate\Http\Request;
 
 class DataSiswaController extends Controller
@@ -13,10 +14,10 @@ class DataSiswaController extends Controller
     public function index()
     {
         try {
-            // $kelas = Datakelas::all();
+            $kelas = kelas::all();
             $datasiswa = DataSiswa::paginate(10);
             return view('page.datasiswa.index', compact('datasiswa'))->with([
-                // 'kelas' => $kelas,
+                'kelas' => $kelas,
             ]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
@@ -38,7 +39,7 @@ class DataSiswaController extends Controller
     {
         try {
             $data = [
-                // 'id_kelas' => $request->input('id_kelas'),
+                'id_kelas' => $request->input('id_kelas'),
                 'nis' => $request->input('nis'),
                 'nama' => $request->input('nama'),
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
@@ -82,7 +83,7 @@ class DataSiswaController extends Controller
     {
         try {
             $data = [
-                // 'id_kelas' => $request->input('id_kelas'),
+                'id_kelas' => $request->input('id_kelas_edit'),
                 'nis' => $request->input('nis'),
                 'nama' => $request->input('nama'),
                 'jenis_kelamin' => $request->input('jenis_kelamin'),
