@@ -14,7 +14,7 @@ class DataSiswaController extends Controller
     {
         try {
             // $kelas = Datakelas::all();
-            $datasiswa = DataSiswa::paginate(10); 
+            $datasiswa = DataSiswa::paginate(10);
             return view('page.datasiswa.index', compact('datasiswa'))->with([
                 // 'kelas' => $kelas,
             ]);
@@ -36,7 +36,27 @@ class DataSiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = [
+                // 'id_kelas' => $request->input('id_kelas'),
+                'nis' => $request->input('nis'),
+                'nama' => $request->input('nama'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+                'tgl_lahir' => $request->input('tgl_lahir')
+            ];
+            Datasiswa::create($data);
+
+            // return back()->with('message_delete', 'Data Customer Sudah di Hapus');
+
+            return redirect()
+                ->route('datasiswa.index')
+                ->with('message_insert', 'Data Siswa Sudah ditambahkan');
+        } catch (\Exception $e) {
+            echo "<script>console.error('PHP Error: " .
+                addslashes($e->getMessage()) . "');</script>";
+            // return view('error.index');
+        }
     }
 
     /**
@@ -60,7 +80,29 @@ class DataSiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        try {
+            $data = [
+                // 'id_kelas' => $request->input('id_kelas'),
+                'nis' => $request->input('nis'),
+                'nama' => $request->input('nama'),
+                'jenis_kelamin' => $request->input('jenis_kelamin'),
+                'alamat' => $request->input('alamat'),
+                'tgl_lahir' => $request->input('tgl_lahir'),
+            ];
+
+
+            $datas = Datasiswa::findOrFail($id);
+            $datas->update($data);
+            // return back()->with('message_delete', 'Data Album Sudah dihapus');
+
+            return redirect()
+                ->route('datasiswa.index')
+                ->with('message_insert', 'Data Siswa Sudah diupdate');
+        } catch (\Exception $e) {
+            echo "<script>console.error('PHP Error: " .
+                addslashes($e->getMessage()) . "');</script>";
+            // return view('error.index');
+        }
     }
 
     /**
@@ -68,6 +110,14 @@ class DataSiswaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        try {
+            $data = DataSiswa::findOrFail($id);
+            $data->delete();
+            return back()->with('message_delete', 'Data Siswa Berhasil Dihapus!');
+        } catch (\Exception $e) {
+            echo "<script>console.error('PHP Error: " .
+                addslashes($e->getMessage()) . "');</script>";
+            // return view('error.index');
+        }
     }
 }

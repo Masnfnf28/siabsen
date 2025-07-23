@@ -12,7 +12,7 @@ class DataSiswa extends Model
     protected $fillable = [
         'nis',
         'nama',
-        'id_kelas',
+        // 'id_kelas',
         'jenis_kelamin',
         'alamat',
         'tgl_lahir',
