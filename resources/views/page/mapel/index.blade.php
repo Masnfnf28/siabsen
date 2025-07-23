@@ -77,18 +77,30 @@
                                             {{ $item->nama }}
                                         </td>
                                         <td class="px-5 py-3 flex justify-center gap-2">
+                                            {{-- Tombol Edit --}}
                                             <button type="button"
                                                 class="bg-amber-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-amber-500"
                                                 onclick="editSourceModal(this)" data-modal-target="sourceModal"
                                                 data-id="{{ $item->id }}" data-nama="{{ $item->nama }}">
                                                 <i class="fi fi-sr-file-edit"></i>
                                             </button>
+
+                                            {{-- Tombol Delete --}}
                                             <button type="button"
                                                 class="bg-red-400 p-3 w-10 h-10 rounded-xl text-white hover:bg-red-500"
                                                 onclick="return mapelDelete('{{ $item->id }}','{{ $item->nama }}')">
                                                 <i class="fi fi-sr-delete-document"></i>
                                             </button>
+
+                                            {{-- Form Hapus Tersembunyi --}}
+                                            <form id="form-hapus-{{ $item->id }}"
+                                                action="{{ route('mapel.destroy', $item->id) }}" method="POST"
+                                                style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>
