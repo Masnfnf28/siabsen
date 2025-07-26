@@ -17,8 +17,14 @@ class DetailAbsensi extends Model
 
     protected $table = 'detail_absensi';
 
-    public function datasiswa()
+    public function siswa()
     {
         return $this->belongsTo(DataSiswa::class, 'id');
     }
+
+    public function absensi()
+    {
+        return $this->belongsTo(Absensi::class, 'id_absensi');
+    }
 }
+

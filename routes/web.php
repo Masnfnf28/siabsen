@@ -18,6 +18,14 @@ Route::resource('kelas', KelasController::class)->middleware('auth');
 Route::resource('datasiswa', DataSiswaController::class)->middleware('auth');
 Route::resource('absensi', AbsensiController::class)->middleware('auth');
 
+Route::get('/absensi/create/{mapel}', [AbsensiController::class, 'create'])->name('absensi.create');
+Route::get('/absensi/create/{mapel_id}/kelas/{kelas_id?}', [AbsensiController::class, 'create'])->name('absensi.kelas');
+
+Route::get('/absensi/{mapel}/tanggal', [AbsensiController::class, 'tanggal'])->name('absensi.tanggal');
+Route::get('/absensi/{mapel}/detail/{tanggal}', [AbsensiController::class, 'detail'])->name('absensi.detail');
+
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
